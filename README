@@ -1,0 +1,41 @@
+Poe-Wheel-Spawner
+
+Poe::Wheel::Run based way to arrange a minimal required nummer of processes
+
+INSTALLATION
+
+To install this module, run the following commands:
+
+	perl Makefile.PL
+	make
+	make test
+	make install
+
+SUPPORT AND DOCUMENTATION
+
+After installing, you can find documentation for this module with the
+perldoc command.
+
+    perldoc Poe::Wheel::Spawner
+
+You can also look for information at:
+
+    RT, CPAN's request tracker (report bugs here)
+        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Poe-Wheel-Spawner
+
+    AnnoCPAN, Annotated CPAN documentation
+        http://annocpan.org/dist/Poe-Wheel-Spawner
+
+    CPAN Ratings
+        http://cpanratings.perl.org/d/Poe-Wheel-Spawner
+
+    Search CPAN
+        http://search.cpan.org/dist/Poe-Wheel-Spawner/
+
+
+LICENSE AND COPYRIGHT
+
+Copyright 2014 by Alexei Pastuchov E<lt>palik at cpan.orgE<gt>.
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
