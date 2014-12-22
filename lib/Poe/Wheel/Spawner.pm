@@ -42,8 +42,8 @@ $Poe::Wheel::Spawner::VERSION = '0.01';
     $foo->run();
 
     sub _workload {
-        
-        # request for a a new sibling
+
+        # request for a new sibling
         $foo->spawn($$);
 
         # ...
