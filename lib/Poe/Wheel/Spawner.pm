@@ -11,7 +11,10 @@ use fields qw/
     _workers_sig_count
     /;
 
-use POE qw/Wheel::Run Filter::Reference/;
+use POE qw/
+    Wheel::Run
+    Filter::Reference
+    /;
 
 =head1 NAME
 
@@ -23,11 +26,11 @@ Poe::Wheel::Spawner generate only one process for your workload and will add a n
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-$Poe::Wheel::Spawner::VERSION = '0.01';
+$Poe::Wheel::Spawner::VERSION = '0.02';
 
 =head1 SYNOPSIS
 
@@ -51,25 +54,29 @@ $Poe::Wheel::Spawner::VERSION = '0.01';
 
 =head1 SUBROUTINES/METHODS
 
-=cut
-
 =head2 new(%opts)
 
-B<%opts> keys:
+options:
 
 =over
 
-=item pool_size
+=item
 
-the number of maximal parallel executed B<workload>s
+pool_size
 
-=item stop_if_done
+the number of maximal parallel executed C<workload>
 
-stop after B<pool_size> pid's are exited.
+=item
 
-run endless if !B<stop_if_done>
+stop_if_done
 
-=item workload
+stop after C<pool_size> pid's are exited.
+
+run endless if !C<stop_if_done>
+
+=item
+
+workload
 
 CODE reference to execute
 
@@ -106,11 +113,15 @@ sub new {
 
 =over
 
-=item debug
+=item
+
+debug
 
 default 0
 
-=item trace
+=item
+
+trace
 
 default 0
 
@@ -147,7 +158,7 @@ sub run {
 
 =head2 spawn($pid)
 
-print { busy_worker_pid => $pid } to stdout
+request to spawn
 
 =cut
 
@@ -159,13 +170,13 @@ sub spawn {
     print @$output;
 } ## end sub spawn
 
-=head2 _handle_start
-
-handle B<_start> and B<_next> events defined in POE::Session, which is initialized in B<run>.
-
-start execution of B<workload> by B<pool_size> parallel running pids
-
-=cut
+#=head2 _handle_start
+#
+#handle C<_start> and C<_next> events defined in POE::Session, which is initialized in C<run>.
+#
+#start execution of C<workload> by C<pool_size> parallel running pids
+#
+#=cut
 
 sub _handle_start {
     my ($self, $kernel, $heap) = @_[OBJECT, KERNEL, HEAP];
@@ -185,11 +196,11 @@ sub _handle_start {
     $kernel->sig_child($w->PID, "_sig_child");
 } ## end sub _handle_start
 
-=head2 _handle_sig_child
-
-Clear heap. Trigger '_next' if !stop_if_done and currently no child is busy
-
-=cut
+#=head2 _handle_sig_child
+#
+#Clear heap. Trigger '_next' if !stop_if_done and currently no child is busy
+#
+#=cut
 
 sub _handle_sig_child {
     my ($self, $kernel, $heap, $pid, $exit_val)
@@ -213,32 +224,32 @@ sub _handle_sig_child {
     }
 } ## end sub _handle_sig_child
 
-=head2 _handle_done
-
-is not implemented yet
-
-=cut
+#=head2 _handle_done
+#
+#is not implemented yet
+#
+#=cut
 
 sub _handle_done { }
 
-=head2 _handle_stderr
-
-provide STDERR to POE::Kernel::_warn
-
-=cut
+#=head2 _handle_stderr
+#
+#provide STDERR to POE::Kernel::_warn
+#
+#=cut
 
 sub _handle_stderr {
     my ($self, $input, $wheel_id) = @_[OBJECT, ARG0, ARG1];
     POE::Kernel::_warn("wheel $wheel_id STDERR: $input");
 }
 
-=head2 _handle_stdout
-
-evaluate from child to stdout printed result.
-
-trigger _next event if child asks - by using busy_worker_pid printed to stdout - for a sibling
-
-=cut
+#=head2 _handle_stdout
+#
+#evaluate from child to stdout printed result.
+#
+#trigger _next event if child asks - by using busy_worker_pid printed to stdout - for a sibling
+#
+#=cut
 
 sub _handle_stdout {
     my ($self, $kernel, $heap, $result) = @_[OBJECT, KERNEL, HEAP, ARG0];
@@ -253,42 +264,6 @@ sub _handle_stdout {
 =head1 AUTHOR
 
 Alexei Pastuchov E<lt>palik at cpan.orgE<gt>.
-
-=head1 BUGS
-
-Please report any bugs or feature requests to C<bug-poe-wheel-spawner at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Poe-Wheel-Spawner>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
-
-=head1 SUPPORT
-
-You can find documentation for this module with the perldoc command.
-
-    perldoc Poe::Wheel::Spawner
-
-
-You can also look for information at:
-
-=over 4
-
-=item * RT: CPAN's request tracker (report bugs here)
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Poe-Wheel-Spawner>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/Poe-Wheel-Spawner>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/Poe-Wheel-Spawner>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/Poe-Wheel-Spawner/>
-
-=back
-
 
 =head1 REPOSITORY
 
