@@ -16,21 +16,23 @@ use POE qw/
     Filter::Reference
     /;
 
+use version;
+
 =head1 NAME
 
-Poe::Wheel::Spawner
+Poe::Wheel::Spawner - A simple subprocess spawner
 
 =head1 DESCRIPTION
 
-Poe::Wheel::Spawner generate only one process for your workload and will add a next one on spawn call in it unless poos_size is not exceeded.
+Poe::Wheel::Spawner starts on L<run|/run(%arg)> only one subprocess for the L<workload|/new(%arg)>. Until number of subprocesses does not exceed L<pool_size|/new(%arg)> each subprocess can L<spawn|/spawn($pid)> another one.
 
 =head1 VERSION
 
-Version 0.02
+Version v0.021.1
 
 =cut
 
-$Poe::Wheel::Spawner::VERSION = '0.02';
+$Poe::Wheel::Spawner::VERSION = qv("v0.021.1");
 
 =head1 SYNOPSIS
 
@@ -54,9 +56,9 @@ $Poe::Wheel::Spawner::VERSION = '0.02';
 
 =head1 SUBROUTINES/METHODS
 
-=head2 new(%opts)
+=head2 new(%arg)
 
-options:
+Arguments:
 
 =over
 
@@ -70,7 +72,7 @@ the number of maximal parallel executed C<workload>
 
 stop_if_done
 
-stop after C<pool_size> pid's are exited.
+stop after all C<pool_size> pid's are exited.
 
 run endless if !C<stop_if_done>
 
@@ -78,7 +80,7 @@ run endless if !C<stop_if_done>
 
 workload
 
-CODE reference to execute
+CODE reference to be executed
 
 =back
 
@@ -107,9 +109,9 @@ sub new {
     return $self;
 } ## end sub new
 
-=head2 run(%opts)
+=head2 run(%arg)
 
-%opts provide to POE::Session
+optional C<%arg> arguments for L<POE::Session>:
 
 =over
 
@@ -127,20 +129,20 @@ default 0
 
 =back
 
-create a POE::Session
+create a L<POE::Session>
 
-run POE::Kernel
+run L<POE::Kernel>
 
 =cut
 
 sub run {
-    my ($self, %opts) = @_;
+    my ($self, %arg) = @_;
 
     ref($self->{workload}) eq 'CODE'
         || die "work_method is not a code reference";
 
     POE::Session->create(
-        options => { debug => $opts{debug} || 0, trace => $opts{trace} || 0 },
+        options => { debug => $arg{debug} || 0, trace => $arg{trace} || 0 },
         object_states => [
             $self => {
                 _start     => '_handle_start',
@@ -272,7 +274,7 @@ L<https://github.com/p-alik/Poe-Wheel-Spawner.git>
 =head1 LICENSE AND COPYRIGHT
 
 
-Copyright 2014 by Alexei Pastuchov E<lt>palik at cpan.orgE<gt>.
+Copyright 2014-2016 by Alexei Pastuchov E<lt>palik at cpan.orgE<gt>.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
