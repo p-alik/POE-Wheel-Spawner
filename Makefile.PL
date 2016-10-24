@@ -14,11 +14,24 @@ WriteMakefile(
     CONFIGURE_REQUIRES => { 'ExtUtils::MakeMaker' => 0, },
     BUILD_REQUIRES     => { 'Test::More' => 0, },
     PREREQ_PM          => {
-        'fields'                 => 0,
-        'POE::Session'           => 0,
-        'POE::Kernel'            => 0,
-        'POE::Wheel::Run'        => 0,
         'POE::Filter::Reference' => 0,
+        'POE::Kernel'            => 0,
+        'POE::Session'           => 0,
+        'POE::Wheel::Run'        => 0,
+        'fields'                 => 0,
+        'version'                => 0,
+    },
+    META_MERGE => {
+        'meta-spec' => { version => 2 },
+        resources   => {
+            bugtracker =>
+                { web => 'https://github.com/p-alik/Poe-Wheel-Spawner/issues' },
+            repository => {
+                type => 'git',
+                url  => 'https://github.com/p-alik/Poe-Wheel-Spawner.git',
+                web  => 'https://github.com/p-alik/Poe-Wheel-Spawner',
+            },
+        },
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES    => 'Poe-Wheel-Spawner-*' },
