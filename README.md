@@ -9,8 +9,8 @@ Poe::Wheel::Spawner is based on [Poe::Wheel::Run](https://metacpan.org/pod/POE::
 
 ```perl
 
-    use M43::POE::Wheel::Spawner;
-    my $foo = M43::POE::Wheel::Spawner->new(
+    use POE::Wheel::Spawner;
+    my $foo = POE::Wheel::Spawner->new(
                 pool_size => 2,
                 stop_if_done => 1,
                 workload => sub { _workload() }

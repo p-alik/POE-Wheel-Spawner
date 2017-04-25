@@ -36,9 +36,9 @@ $Poe::Wheel::Spawner::VERSION = qv("v0.021.1");
 
 =head1 SYNOPSIS
 
-    use M43::POE::Wheel::Spawner;
+    use POE::Wheel::Spawner;
 
-    my $foo = M43::POE::Wheel::Spawner->new(
+    my $foo = POE::Wheel::Spawner->new(
                 pool_size => 2,
                 stop_if_done => 1,
                 workload => sub { _workload() }
