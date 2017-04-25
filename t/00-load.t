@@ -1,10 +1,11 @@
 use 5.006;
 use strict;
 use warnings FATAL   => 'all';
-use Test::More tests => 1;
+use Test::More tests => 2;
 
-BEGIN {
-    use_ok('Poe::Wheel::Spawner') || print "Bail out!\n";
-}
+my $n = "Poe::Wheel::Spawner";
+use_ok($n);
 
-diag("Testing Poe::Wheel::Spawner $Poe::Wheel::Spawner::VERSION, Perl $], $^X");
+my $v  = version->declare("0.021.2");
+my $_v = eval '$' . $n . '::VERSION';
+is($_v, $v, "$n version is $v");

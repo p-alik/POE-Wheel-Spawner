@@ -28,11 +28,11 @@ Poe::Wheel::Spawner starts on L<run|/run(%arg)> only one subprocess for the L<wo
 
 =head1 VERSION
 
-Version v0.021.1
+Version v0.021.2
 
 =cut
 
-$Poe::Wheel::Spawner::VERSION = qv("v0.021.1");
+$Poe::Wheel::Spawner::VERSION = version->declare("0.021.2");
 
 =head1 SYNOPSIS
 
