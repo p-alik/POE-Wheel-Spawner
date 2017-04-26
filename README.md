@@ -1,11 +1,11 @@
-Poe-Wheel-Spawner
+POE-Wheel-Spawner
 =================
 
-[![CPAN version](https://badge.fury.io/pl/Plack-Middleware-Dispatch-GP.png)](https://badge.fury.io/pl/Poe-Wheel-Spawner)
-[![Build Status](https://travis-ci.org/p-alik/Plack-Middleware-Dispatch-GP.png)](https://travis-ci.org/p-alik/Poe-Wheel-Spawner)
-[![Coverage Status](https://coveralls.io/repos/github/p-alik/Plack-Middleware-Dispatch-GP/badge.png)](https://coveralls.io/github/p-alik/Poe-Wheel-Spawner)
+[![CPAN version](https://badge.fury.io/pl/POE-Wheel-Spawner.png)](https://badge.fury.io/pl/POE-Wheel-Spawner)
+[![Build Status](https://travis-ci.org/p-alik/POE-Wheel-Spawner.png)](https://travis-ci.org/p-alik/POE-Wheel-Spawner)
+[![Coverage Status](https://coveralls.io/repos/github/p-alik/POE-Wheel-Spawner/badge.png)](https://coveralls.io/github/p-alik/POE-Wheel-Spawner)
 
-Poe::Wheel::Spawner is based on [Poe::Wheel::Run](https://metacpan.org/pod/POE::Wheel::Run). This module offers a smart facility to arrange a minimal required nummer of subprocesses
+POE::Wheel::Spawner is based on [POE::Wheel::Run](https://metacpan.org/pod/POE::Wheel::Run). This module offers a smart facility to arrange a minimal required nummer of subprocesses
 
 ```perl
 
@@ -21,6 +21,6 @@ Poe::Wheel::Spawner is based on [Poe::Wheel::Run](https://metacpan.org/pod/POE::
     sub _workload {
         # request for a new sibling
         $foo->spawn($$);
-        # ...
+        # do some stuff
     }
 ```

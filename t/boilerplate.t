@@ -47,6 +47,6 @@ sub module_boilerplate_ok {
     "placeholder date/time"       => qr(Date/time)
   );
 
-  module_boilerplate_ok('lib/Poe/Wheel/Spawner.pm');
+  module_boilerplate_ok('lib/POE/Wheel/Spawner.pm');
 
 

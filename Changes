@@ -1,4 +1,7 @@
-Revision history for Poe-Wheel-Spawner
+Revision history for POE-Wheel-Spawner
+
+0.03.1 2017-04-26
+        * rename the module to POE::Wheel::Spawner (previous Poe)
 
 0.021.2 2017-04-25
         * clean up POD description

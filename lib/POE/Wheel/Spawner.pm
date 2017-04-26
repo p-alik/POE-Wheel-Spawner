@@ -1,4 +1,4 @@
-package Poe::Wheel::Spawner;
+package POE::Wheel::Spawner;
 
 use 5.006;
 use strict;
@@ -20,19 +20,19 @@ use version;
 
 =head1 NAME
 
-Poe::Wheel::Spawner - A simple subprocess spawner
+POE::Wheel::Spawner - A simple subprocess spawner
 
 =head1 DESCRIPTION
 
-Poe::Wheel::Spawner starts on L<run|/run(%arg)> only one subprocess for the L<workload|/new(%arg)>. Until number of subprocesses does not exceed L<pool_size|/new(%arg)> each subprocess can L<spawn|/spawn($pid)> another one.
+POE::Wheel::Spawner starts on L<run|/run(%arg)> only one subprocess for the L<workload|/new(%arg)>. Until number of subprocesses does not exceed L<pool_size|/new(%arg)> each subprocess can L<spawn|/spawn($pid)> another one.
 
 =head1 VERSION
 
-Version v0.021.2
+Version v0.03.1
 
 =cut
 
-$Poe::Wheel::Spawner::VERSION = version->declare("0.021.2");
+$POE::Wheel::Spawner::VERSION = version->declare("0.03.1");
 
 =head1 SYNOPSIS
 
@@ -87,7 +87,7 @@ CODE reference to be executed
 =cut
 
 sub new {
-    my Poe::Wheel::Spawner $self = shift;
+    my POE::Wheel::Spawner $self = shift;
     my (%opts) = @_;
     unless (ref($self)) {
         $self = fields::new($self);
@@ -261,7 +261,7 @@ sub _handle_stdout {
     }
 } ## end sub _handle_stdout
 
-1;    # End of Poe::Wheel::Spawner
+1;    # End of POE::Wheel::Spawner
 
 =head1 AUTHOR
 
@@ -269,7 +269,7 @@ Alexei Pastuchov E<lt>palik at cpan.orgE<gt>.
 
 =head1 REPOSITORY
 
-L<https://github.com/p-alik/Poe-Wheel-Spawner.git>
+L<https://github.com/p-alik/POE-Wheel-Spawner.git>
 
 =head1 LICENSE AND COPYRIGHT
 

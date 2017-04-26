@@ -3,9 +3,10 @@ use strict;
 use warnings FATAL => 'all';
 use Test::More;
 
-use_ok('Poe::Wheel::Spawner') || print "Bail out!\n";
+my $n = 'POE::Wheel::Spawner';
+use_ok($n) || print "Bail out!\n";
 
-can_ok 'Poe::Wheel::Spawner', qw/
+can_ok $n, qw/
     run
     _handle_start
     _handle_start
@@ -16,7 +17,7 @@ can_ok 'Poe::Wheel::Spawner', qw/
     /;
 
 my $cls = new_ok(
-    'Poe::Wheel::Spawner',
+    $n,
     [
         pool_size    => 3,
         stop_if_done => 1,
